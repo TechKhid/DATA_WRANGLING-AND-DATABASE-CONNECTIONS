@@ -37,7 +37,7 @@ def pension_increase(name_1:str, name_2:str, rate: float):
             print(f"{name_2} is found.")
             prev_pen = contingency.pension
             contingency.pension = int(round((prev_pen*(rate/100)) + prev_pen))
-            print(f"Pension got increased from{prev_pen} to {contingency.pension}")
+            print(f"Pension got increased from {prev_pen} to {contingency.pension}")
         else:
             print(f"{name_2} is still not found X!!")
 
