@@ -92,7 +92,6 @@ def read_csv(file_path):
     with open(file_path, 'r') as csv_file:
         csv_reader = csv.DictReader(csv_file)
         for row in csv_reader:
-            # row = {key.replace(' ', '_'): value for key, value in row.items()}
             yield {
                 'first_name': row['First Name'],
                 'second_name': row['Second Name'],
@@ -102,7 +101,6 @@ def read_csv(file_path):
                 'vehicle_model': row['Vehicle Model'],
                 'vehicle_year': row['Vehicle Year'],
                 'vehicle_type': row['Vehicle Type'],
-                # 'data': {'source': 'CSV', 'raw_data': row}
             }
 
 # Function to read and extract data from JSON file
@@ -122,7 +120,6 @@ def read_json(file_path):
                 'address_main': item.get('address_main', ''),
                 'address_city': item.get('address_city', ''),
                 'address_postcode': item.get('address_postcode', ''),
-                # 'data': {'source': 'JSON', 'raw_data': item}
             }
 
 
