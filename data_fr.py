@@ -39,15 +39,10 @@ class UnifiedRecord(db.Entity):
     company = Optional(str, nullable=True)
     commute_distance = Optional(float)
     
-    # data = Required(Json)
 
-# Connect to the database (replace 'sqlite' with your desired database type and filename)
+# Connect to the database
 db.bind(provider='sqlite', filename='unified_records.db', create_db=True)
 db.generate_mapping(create_tables=True)
-
-# # # Function to read and extract data from CSV file
-
-
 
 
 # def read_txt(file_path):
