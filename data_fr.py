@@ -157,7 +157,6 @@ def read_xml(file_path):
             'commute_distance': float(commute_distance) if commute_distance != '0' else None,  #float(user.get('commute_distance', None)),
             'address_postcode': user.get('address_postcode', ''),
 
-            # 'data': {'source': 'XML', 'raw_data': ET.tostring(user).decode()}
         }
 
 
@@ -181,11 +180,11 @@ def main():
     #     f.write(str(unified_records))
     #     f.close
     # Insert unified records into the database
-    # with db_session:
-    #     for record in unified_records:
-    #         if 'retired' in record:
-    #             record['retired'] = str(record['retired'])
-    #         UnifiedRecord(**record)
+    with db_session:
+        for record in unified_records:
+            if 'retired' in record:
+                record['retired'] = str(record['retired'])
+            UnifiedRecord(**record)
     
 
 if __name__ == "__main__":  
