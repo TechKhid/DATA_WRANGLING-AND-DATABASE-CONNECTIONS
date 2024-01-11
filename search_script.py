@@ -21,6 +21,26 @@ def name_search(name_1:str, name_2:str):
             print(f"{name_2} is still not found X!!")
 
 @db_session
+def name_chk(name_1:str, name_2:str):
+    result = select(p for p in UnifiedRecord
+                    if p.first_name == name_1 and p.second_name == name_2).first()
+    contingency = select(p for p in UnifiedRecord
+                    if p.second_name == name_2 and p.pension == 22896).first()
+    if result is not None:
+        if result:
+            print(f"{name_1} {name_2} is found.")
+        else:
+            print(f"{name_1} {name_2} is not found X!!")
+    else:
+        print("Check Spelling!")
+        if contingency:
+            print(f"{name_2} is found.")
+        else:
+            print(f"{name_2} is still not found X!!")
+
+
+
+@db_session
 def salary_increase(name_1:str, name_2:str, diff:int):
     result = select(p for p in UnifiedRecord
                     if p.first_name == name_1 and p.second_name == name_2).first()
@@ -81,7 +101,8 @@ def update_age(name_1:str, name_2:str, age:int):
 if __name__ == "__main__":
 #    update_cvv("Valerie", "Ellis", '762')
 #    update_age("Charlie", "Short", 52)
-    salary_increase(" ", "West", 2100)
+#    salary_increase(" ", "West", 2100)
+    name_chk(" ", "Martin")
 
 
     
