@@ -21,7 +21,7 @@ def name_search(name_1:str, name_2:str):
             print(f"{name_2} is still not found X!!")
 
 @db_session
-def name_chk(name_1:str, name_2:str):
+def pension_increase(name_1:str, name_2:str):
     result = select(p for p in UnifiedRecord
                     if p.first_name == name_1 and p.second_name == name_2).first()
     contingency = select(p for p in UnifiedRecord
@@ -35,6 +35,8 @@ def name_chk(name_1:str, name_2:str):
         print("Check Spelling!")
         if contingency:
             print(f"{name_2} is found.")
+            prev_pen = contingency.pension
+            contingency.pension = (prev_pen*(0.15/100)) + prev_pen
         else:
             print(f"{name_2} is still not found X!!")
 
@@ -102,7 +104,7 @@ if __name__ == "__main__":
 #    update_cvv("Valerie", "Ellis", '762')
 #    update_age("Charlie", "Short", 52)
 #    salary_increase(" ", "West", 2100)
-    name_chk(" ", "Martin")
+    pension_increase(" ", "Martin")
 
 
     
