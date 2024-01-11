@@ -1,12 +1,12 @@
-from data_fr import db, UnifiedRecord
+from data_fr import db, DataComb
 from pony.orm import db_session, select, commit
 
 
 @db_session
 def name_search(name_1:str, name_2:str):
-    result = select(p for p in UnifiedRecord
+    result = select(p for p in DataComb
                     if p.first_name == name_1 and p.second_name == name_2).first()
-    contingency = select(p for p in UnifiedRecord
+    contingency = select(p for p in DataComb
                     if p.second_name == name_2).first()
     if result is not None:
         if result:
@@ -22,9 +22,9 @@ def name_search(name_1:str, name_2:str):
 
 @db_session
 def pension_increase(name_1:str, name_2:str, rate: float):
-    result = select(p for p in UnifiedRecord
+    result = select(p for p in DataComb
                     if p.first_name == name_1 and p.second_name == name_2).first()
-    contingency = select(p for p in UnifiedRecord
+    contingency = select(p for p in DataComb
                     if p.second_name == name_2 and p.pension == 22896).first()
     if result is not None:
         if result:
@@ -45,9 +45,9 @@ def pension_increase(name_1:str, name_2:str, rate: float):
 
 @db_session
 def salary_increase(name_1:str, name_2:str, diff:int):
-    result = select(p for p in UnifiedRecord
+    result = select(p for p in DataComb
                     if p.first_name == name_1 and p.second_name == name_2).first()
-    contingency = select(p for p in UnifiedRecord
+    contingency = select(p for p in DataComb
                     if p.second_name == name_2).first()
     if result is not None:
         if result:
@@ -68,7 +68,7 @@ def salary_increase(name_1:str, name_2:str, diff:int):
 
 @db_session
 def update_cvv(name_1:str, name_2:str, cvv:str):
-    result = select(p for p in UnifiedRecord
+    result = select(p for p in DataComb
                     if p.first_name == name_1 and p.second_name == name_2).first()
     if result is not None:
         if result:
@@ -83,7 +83,7 @@ def update_cvv(name_1:str, name_2:str, cvv:str):
 
 @db_session
 def update_age(name_1:str, name_2:str, age:int):
-    result = select(p for p in UnifiedRecord
+    result = select(p for p in DataComb
                     if p.first_name == name_1 and p.second_name == name_2).first()
     if result is not None:
         if result:

@@ -2,12 +2,12 @@ import csv
 import json
 import xml.etree.ElementTree as ET
 import re
-from pony.orm import Database, PrimaryKey, db_session, Optional, Json
+from pony.orm import Database, PrimaryKey, db_session, Optional
 
 
 db = Database()
 
-class UnifiedRecord(db.Entity):
+class DataComb(db.Entity):
     id = PrimaryKey(int, auto=True)
     first_name = Optional(str)
     second_name = Optional(str)
@@ -41,7 +41,7 @@ class UnifiedRecord(db.Entity):
     
 
 # Connect to the database
-db.bind(provider='sqlite', filename='unified_records.db', create_db=True)
+db.bind(provider='sqlite', filename='comb_data.db', create_db=True)
 db.generate_mapping(create_tables=True)
 
 
@@ -159,24 +159,23 @@ def main():
     csv_data = read_csv('data.csv')
     json_data = read_json('data.json')
     xml_data = read_xml('data.xml')
-    # txt_data = read_txt('data.txt')
 
-    # for item in xml_data:
-    #     print(item)
 
-    unified_records = list(csv_data) + list(json_data) + list(xml_data)
+    
+
+    comb_data = list(csv_data) + list(json_data) + list(xml_data)
     
     
 
-    # with open('unifiedrecords.txt', 'w') as f:
-    #     f.write(str(unified_records))
+    # with open('DataCombs.txt', 'w') as f:
+    #     f.write(str(comb_data))
     #     f.close
     # Insert unified records into the database
     with db_session:
-        for record in unified_records:
+        for record in comb_data:
             if 'retired' in record:
                 record['retired'] = str(record['retired'])
-            UnifiedRecord(**record)
+            DataComb(**record)
     
 
 if __name__ == "__main__":  
