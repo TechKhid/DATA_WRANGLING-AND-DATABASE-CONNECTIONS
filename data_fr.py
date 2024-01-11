@@ -1,7 +1,7 @@
 import csv
 import json
 import xml.etree.ElementTree as ET
-import re
+
 from pony.orm import Database, PrimaryKey, db_session, Optional
 
 
