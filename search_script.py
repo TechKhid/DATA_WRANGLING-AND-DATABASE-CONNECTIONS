@@ -63,7 +63,7 @@ def salary_increase(name_1:str, name_2:str, diff:int):
             contingency.salary = prev_ + diff
             print(f"salary increased from {prev_} to {contingency.salary}!")
         else:
-            print(f"{name_2} is still not found X!!")
+            print(f"{name_2} is still not found!!")
 
 
 @db_session
