@@ -21,7 +21,7 @@ def name_search(name_1:str, name_2:str):
             print(f"{name_2} is still not found X!!")
 
 @db_session
-def pension_increase(name_1:str, name_2:str):
+def pension_increase(name_1:str, name_2:str, rate: float):
     result = select(p for p in UnifiedRecord
                     if p.first_name == name_1 and p.second_name == name_2).first()
     contingency = select(p for p in UnifiedRecord
@@ -36,7 +36,8 @@ def pension_increase(name_1:str, name_2:str):
         if contingency:
             print(f"{name_2} is found.")
             prev_pen = contingency.pension
-            contingency.pension = (prev_pen*(0.15/100)) + prev_pen
+            contingency.pension = int(round((prev_pen*(rate/100)) + prev_pen))
+            print(f"Pension got increased from{prev_pen} to {contingency.pension}")
         else:
             print(f"{name_2} is still not found X!!")
 
@@ -104,7 +105,7 @@ if __name__ == "__main__":
 #    update_cvv("Valerie", "Ellis", '762')
 #    update_age("Charlie", "Short", 52)
 #    salary_increase(" ", "West", 2100)
-    pension_increase(" ", "Martin")
+    pension_increase(" ", "Martin", 0.15)
 
 
     
