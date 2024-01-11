@@ -45,42 +45,42 @@ class UnifiedRecord(db.Entity):
 db.bind(provider='sqlite', filename='unified_records.db', create_db=True)
 db.generate_mapping(create_tables=True)
 
-# # Function to read and extract data from CSV file
+# # # Function to read and extract data from CSV file
 
 
 
 
-def read_txt(file_path):
-    # Open the file and read the lines
-    with open(file_path, 'r') as f:
-        lines = f.readlines()
+# def read_txt(file_path):
+#     # Open the file and read the lines
+#     with open(file_path, 'r') as f:
+#         lines = f.readlines()
 
-    # Define a regular expression pattern to match the name, date, and content of each message
-    pattern = r"([A-Za-z ]+),? (?:e-mailed in overnight \((Full details in Ticket #[0-9]+)\)\.|on the promotion|Birthday Mr|the pension policy has changed slightly since the meeting last week\.) (.+)"
+#     # Define a regular expression pattern to match the name, date, and content of each message
+#     pattern = r"([A-Za-z ]+),? (?:e-mailed in overnight \((Full details in Ticket #[0-9]+)\)\.|on the promotion|Birthday Mr|the pension policy has changed slightly since the meeting last week\.) (.+)"
 
-    # Create an empty list to store the extracted data
-    data = []
+#     # Create an empty list to store the extracted data
+#     data = []
 
-    # Loop through the lines and apply the pattern
-    for line in lines:
-        # Remove any trailing whitespace
-        line = line.strip()
-        # Search for the pattern in the line
-        match = re.search(pattern, line)
-        # If there is a match, extract the name, date, and content
-        if match:
-            name = match.group(1)
-            date = match.group(2) or "Unknown"
-            content = match.group(3)
-            # Append the extracted data as a tuple to the list
-            data.append((name, date, content))
-    keys = ['name', 'date', 'content']
+#     # Loop through the lines and apply the pattern
+#     for line in lines:
+#         # Remove any trailing whitespace
+#         line = line.strip()
+#         # Search for the pattern in the line
+#         match = re.search(pattern, line)
+#         # If there is a match, extract the name, date, and content
+#         if match:
+#             name = match.group(1)
+#             date = match.group(2) or "Unknown"
+#             content = match.group(3)
+#             # Append the extracted data as a tuple to the list
+#             data.append((name, date, content))
+#     keys = ['name', 'date', 'content']
 
-    # Convert list of tuples to list of dictionaries
-    list_of_dicts = [dict(zip(keys, tpl)) for tpl in data]
+#     # Convert list of tuples to list of dictionaries
+#     list_of_dicts = [dict(zip(keys, tpl)) for tpl in data]
 
-    # Return the list of extracted data
-    return list_of_dicts
+#     # Return the list of extracted data
+#     return list_of_dicts
 
 
 
@@ -126,16 +126,6 @@ def read_json(file_path):
             }
 
 
-# def read_txt(file_path, delimiter='\t'):
-#     with open(file_path, 'r') as txt_file:
-#         for line in txt_file:
-#             values = line.strip().split(delimiter)
-#             yield {
-#                 'name': values[0],
-#                 'age': int(values[1]),
-#                 'address': values[2],
-#                 'data': {'source': 'TXT', 'raw_data': line.strip()}
-#             }
 
 
 # Function to read and extract data from XML file
