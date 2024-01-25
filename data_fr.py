@@ -1,7 +1,6 @@
 import csv
 import json
 import xml.etree.ElementTree as ET
-
 from pony.orm import Database, PrimaryKey, db_session, Optional
 
 
@@ -43,43 +42,6 @@ class DataComb(db.Entity):
 # Connect to the database
 db.bind(provider='sqlite', filename='comb_data.db', create_db=True)
 db.generate_mapping(create_tables=True)
-
-
-# def read_txt(file_path):
-#     # Open the file and read the lines
-#     with open(file_path, 'r') as f:
-#         lines = f.readlines()
-
-#     # Define a regular expression pattern to match the name, date, and content of each message
-#     pattern = r"([A-Za-z ]+),? (?:e-mailed in overnight \((Full details in Ticket #[0-9]+)\)\.|on the promotion|Birthday Mr|the pension policy has changed slightly since the meeting last week\.) (.+)"
-
-#     # Create an empty list to store the extracted data
-#     data = []
-
-#     # Loop through the lines and apply the pattern
-#     for line in lines:
-#         # Remove any trailing whitespace
-#         line = line.strip()
-#         # Search for the pattern in the line
-#         match = re.search(pattern, line)
-#         # If there is a match, extract the name, date, and content
-#         if match:
-#             name = match.group(1)
-#             date = match.group(2) or "Unknown"
-#             content = match.group(3)
-#             # Append the extracted data as a tuple to the list
-#             data.append((name, date, content))
-#     keys = ['name', 'date', 'content']
-
-#     # Convert list of tuples to list of dictionaries
-#     list_of_dicts = [dict(zip(keys, tpl)) for tpl in data]
-
-#     # Return the list of extracted data
-#     return list_of_dicts
-
-
-
-
 
 
 
@@ -138,7 +100,7 @@ def read_xml(file_path):
         yield {
             'first_name': user.get('firstName', ''),
             'second_name': user.get('lastName', ''),
-            'age': int(user.get('age', None)),
+            'age': int(user.get('age',0)),
             'sex': user.get('sex', ''),
             'retired': user.get('retired', '').lower() == 'true',
             'dependants': dependants,

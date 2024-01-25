@@ -104,8 +104,8 @@ def update_age(name_1:str, name_2:str, age:int):
 if __name__ == "__main__":
 #    update_cvv("Valerie", "Ellis", '762')
 #    update_age("Charlie", "Short", 52)
-#    salary_increase(" ", "West", 2100)
-    pension_increase(" ", "Martin", 0.15)
+    salary_increase(" ", "West", 2100)
+    # pension_increase(" ", "Martin", 0.15)
 
 
     
